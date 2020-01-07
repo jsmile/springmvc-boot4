@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="www.Thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <title>Spring Framework MVC - 상품목록 보기</title>
+
+   <link href="http://cdn.dsdelivr.net/webjars/bootstrap/3.3.4/bootstrap.min.css"
+         th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+         rel="stylesheet" media="screen"/>
+   <script href="http://cdn.dsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+           th:href="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+   <link href="../static/css/spring-core.css"
+         th:href="@{css/spring-core.css}"
+         rel="stylesheet" media="screen"/>
+</head>
+<body>
+   <div class="container">
+      <div th:if="@{ not #List.isEmpty( products ) }">
+         <h2>상품 목록</h2>
+         <table class="table table-striped">
+            <tr>
+               <td>ID</td>
+               <td>상품 설명</td>
+               <td>상품 가격</td>
+               <td>이미지 경로</td>
+            </tr>
+            <tr th:each=" product : ${products} ">
+               <td th:text="${ product.id }"></td>
+               <td th:text="${ product.description }"></td>
+               <td th:text="${ product.price }"></td>
+               <td th:text="${ product.imageUrl }"></td>
+            </tr>
+         </table>
+      </div>
+
+   </div>
+
+
+</body>
+</html>
