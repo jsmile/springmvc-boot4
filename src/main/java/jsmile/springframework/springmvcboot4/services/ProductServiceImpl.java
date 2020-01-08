@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ProductServiceImpl implements ProductService
@@ -27,6 +24,24 @@ public class ProductServiceImpl implements ProductService
    public Product getProductById( Integer _id )
    {
       return products.get( _id );
+   }
+
+   @Override
+   public Product saveOrUpdateProduct( Product _product )
+   {
+      if( _product != null )
+      {
+         if( _product.getId() == null ) { _product.setId( getNextKey() );}
+         products.put( _product.getId(), _product );
+      }
+      else { new RuntimeException( "상품 정보가 필요합니다." ); }
+
+      return _product;
+   }
+
+   private Integer getNextKey()
+   {
+      return Collections.max( products.keySet() ) + 1;
    }
 
    private void loadProducts()

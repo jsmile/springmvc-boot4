@@ -9,4 +9,6 @@ public interface ProductService
    public List<Product> listAllProducts();
 
    public Product getProductById( Integer _id );
+
+   public Product saveOrUpdateProduct( Product _product );
 }
