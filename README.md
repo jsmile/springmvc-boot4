@@ -5,3 +5,6 @@
 - template engine : Thymeleaf
 
 - display product branch
+- make a new product
+- edit a product 
+- delete a product 

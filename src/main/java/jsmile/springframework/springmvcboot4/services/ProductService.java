@@ -11,4 +11,6 @@ public interface ProductService
    public Product getProductById( Integer _id );
 
    public Product saveOrUpdateProduct( Product _product );
+
+   public void deleteProduct( Integer _id );
 }

@@ -17,7 +17,7 @@
 <body>
    <div class="container">
       <div th:if="@{ not #List.isEmpty( products ) }">
-         <h2>상품 목록</h2>
+         <h3>상품 목록</h3>
          <table class="table table-striped">
             <tr>
                <td>ID</td>
@@ -25,6 +25,7 @@
                <td>상품 가격</td>
                <td>이미지 경로</td>
                <td>제품 상세</td>
+               <td>제품 삭제</td>
             </tr>
             <tr th:each=" product : ${products} ">
                <td th:text="${ product.id }"></td>
@@ -32,6 +33,7 @@
                <td th:text="${ product.price }"></td>
                <td th:text="${ product.imageUrl }"></td>
                <td><a th:href="${'/product/' + product.id}">상세보기</a> </td>
+               <td><a th:href="${'/product/delete/' + product.id}">삭제</a> </td>
             </tr>
          </table>
          <div>
