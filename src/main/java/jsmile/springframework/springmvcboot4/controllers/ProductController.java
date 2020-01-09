@@ -53,4 +53,21 @@ public class ProductController
 
       return "redirect:/product/" + savedProduct.getId();
    }
+
+   @RequestMapping( "/product/edit/{_id}" )
+   public String editProduct( @PathVariable Integer _id, Model _model )
+   {
+      _model.addAttribute( "product", productService.getProductById( _id ) );
+
+      return "productform";
+   }
+
+   @RequestMapping( "/product/delete/{_id}" )
+   public String deleteProduct( @PathVariable Integer _id, Model _moModel )
+   {
+      productService.deleteProduct( _id );
+      _moModel.addAttribute( "products", productService.listAllProducts() );
+
+      return "products";
+   }
 }
