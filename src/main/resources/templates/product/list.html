@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <title>상품 목록</title>
+
+   <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+         th:href="@{/webjars/bootstarp/3.3.5/bootstrap.min.css}" rel="stylesheet" media="screen">
+   <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+           th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+   <link href="../../static/css/spring-core.css"
+         th:href="@{/css/spring-core.css}" ref="stylesheet" rel="stylesheet"  media="screen">
+
+</head>
+<body>
+   <div class="container">
+
+      <h3>상품 목록</h3>
+      <div th:if="{not #List.isEmpty( products )}">
+         <table class="table table-striped">
+            <tr>
+               <th>ID</th>
+               <th>상품설명</th>
+               <th>가격</th>
+               <th>이미지 경로</th>
+               <th>상세 정보</th>
+               <th>삭제</th>
+            </tr>
+            <tr>
+               <td th:text="${product.id}"></td>
+               <td th:text="${product.description}"></td>
+               <td th:text="${product.price}"></td>
+               <td th:text="${product.imageUrl}"></td>
+               <td><a th:href="${'/product/show/'  + product.id}"></a></td>
+               <td><a th:href="${'/product/delete/'  + product.id}"></a></td>
+            </tr>
+         </table>
+      </div>
+      <div class="row">
+         <div class="col-sm-3"><a th:href="/product/new">신규 상품</a></div>
+      </div>
+   </div>
+</body>
+</html>

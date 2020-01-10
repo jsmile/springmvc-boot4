@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <title>고객 정보</title>
+
+   <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+         th:href="@{/webjars/bootstarp/3.3.5/bootstrap.min.css}" rel="stylesheet" media="screen">
+   <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+           th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+   <link href="../../static/css/spring-core.css"
+         th:href="@{/css/spring-core.css}" ref="stylesheet" rel="stylesheet"  media="screen">
+
+</head>
+<body>
+
+   <div class="container">
+
+      <h3>고객 목록</h3>
+
+      <div th:if="{not #List.isEmpty( customers )}">
+         <table class="table table-striped">
+            <tr>
+               <th>ID</th>
+               <th>이름</th>
+               <th>성</th>
+               <th>Email</th>
+               <th>고객정보</th>
+               <th>삭제</th>
+            </tr>
+            <tr th:each="customer : ${customers}">
+               <td th:text="{customer.id}"></td>
+               <td th:text="{customer.firstName}"></td>
+               <td th:text="{customer.lastName}"></td>
+               <td th:text="{customer.email}"></td>
+               <td><a th:href="{'/product/show/' + customer.id}">상세보기</a></td>
+               <td><a th:href="{'/product/delete/' + customer.id}">삭제</a></td>
+            </tr>
+         </table>
+      </div>
+      <div class="row">
+         <div class="col-sm-3"><a href="/customer/new">신규 고객</a></div>
+      </div>
+
+   </div>
+
+</body>
+</html>
