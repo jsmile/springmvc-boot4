@@ -2,11 +2,13 @@ package jsmile.springframework.springmvcboot4.services;
 
 import jsmile.springframework.springmvcboot4.domains.Customer;
 import jsmile.springframework.springmvcboot4.domains.IDomainObject;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+@Service
 public class CustomerServiceImpl extends AbstractMapService implements ICustomerService
 {
 

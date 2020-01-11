@@ -80,10 +80,7 @@ public class Customer implements IDomainObject
       return addressLine2;
    }
 
-   public void setAddress2( String _addressLine2 )
-   {
-      this.addressLine2 = _addressLine2;
-   }
+   public void setAddressLine2( String _addressLine2 ) { this.addressLine2 = _addressLine2; }
 
    public String getCity()
    {

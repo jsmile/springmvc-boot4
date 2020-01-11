@@ -2,6 +2,7 @@ package jsmile.springframework.springmvcboot4.controllers;
 
 import jsmile.springframework.springmvcboot4.domains.Customer;
 import jsmile.springframework.springmvcboot4.services.ICustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +15,13 @@ public class CustomerController
 {
    private ICustomerService customerService;
 
+   @Autowired
    public void setCustomerService( ICustomerService customerService )
    {
       this.customerService = customerService;
    }
 
-   @RequestMapping( "/list" )
+   @RequestMapping( {"/list", "/"} )
    public String listAll( Model _model )
    {
       _model.addAttribute( "customers", customerService.listAll() );
@@ -27,7 +29,7 @@ public class CustomerController
       return "customer/list";
    }
 
-   @RequestMapping( "/{_id}" )
+   @RequestMapping( "/show/{_id}" )
    public String show( @PathVariable Integer _id, Model _model )
    {
       _model.addAttribute( "customer", customerService.getById( _id ) );
@@ -38,7 +40,7 @@ public class CustomerController
    @RequestMapping( "/new" )
    public String newCustomer( Model _model )
    {
-      _model.addAttribute( "", new Customer() );
+      _model.addAttribute( "customer", new Customer() );
 
       return "customer/customerform";
    }
@@ -54,7 +56,7 @@ public class CustomerController
    @RequestMapping( "/edit/{_id}")
    public String edit( @PathVariable Integer _id, Model _model )
    {
-      _model.addAttribute( "", customerService.getById( _id ) );
+      _model.addAttribute( "customer", customerService.getById( _id ) );
 
       return "customer/customerform";
    }
@@ -64,7 +66,7 @@ public class CustomerController
    {
       customerService.delete( _id );
 
-      return "redirect:customer/list";
+      return "redirect:/customer/list";
    }
 
 

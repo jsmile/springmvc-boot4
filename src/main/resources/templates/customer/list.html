@@ -18,7 +18,7 @@
 
       <h3>고객 목록</h3>
 
-      <div th:if="{not #List.isEmpty( customers )}">
+      <div th:if="${not #lists.isEmpty( customers )}">
          <table class="table table-striped">
             <tr>
                <th>ID</th>
@@ -29,12 +29,12 @@
                <th>삭제</th>
             </tr>
             <tr th:each="customer : ${customers}">
-               <td th:text="{customer.id}"></td>
-               <td th:text="{customer.firstName}"></td>
-               <td th:text="{customer.lastName}"></td>
-               <td th:text="{customer.email}"></td>
-               <td><a th:href="{'/product/show/' + customer.id}">상세보기</a></td>
-               <td><a th:href="{'/product/delete/' + customer.id}">삭제</a></td>
+               <td th:text="${customer.id}"></td>
+               <td th:text="${customer.firstName}"></td>
+               <td th:text="${customer.lastName}"></td>
+               <td th:text="${customer.email}"></td>
+               <td><a th:href="${'/customer/show/' + customer.id}">상세보기</a></td>
+               <td><a th:href="${'/customer/delete/' + customer.id}">삭제</a></td>
             </tr>
          </table>
       </div>
