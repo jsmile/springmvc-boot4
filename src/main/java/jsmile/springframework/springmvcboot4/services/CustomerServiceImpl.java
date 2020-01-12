@@ -12,7 +12,6 @@ import java.util.List;
 public class CustomerServiceImpl extends AbstractMapService implements ICustomerService
 {
 
-
    @Override
    protected void loadDomainObjects()
    {
