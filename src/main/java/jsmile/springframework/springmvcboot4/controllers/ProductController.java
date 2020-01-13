@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@RequestMapping( "/product" )
 @Controller
 public class ProductController
 {
@@ -21,7 +20,10 @@ public class ProductController
       this.productService = _productService;
    }
 
-   @RequestMapping( { "/", "/list" } )
+   /**
+    *  '/product'  이지만 RequestMethod.POST 가 아닌 경우
+    * */
+   @RequestMapping( { "/product", "/product/list" } )
    public String listAll( Model _model )
    {
       _model.addAttribute( "products", productService.listAll() );
@@ -29,7 +31,7 @@ public class ProductController
       return "product/list";
    }
 
-   @RequestMapping( "/show/{_id}" )
+   @RequestMapping( "/product/show/{_id}" )
    public String getById( @PathVariable Integer _id, Model _model )
    {
       Product product = productService.getById( _id );
@@ -38,7 +40,7 @@ public class ProductController
       return "product/show";
    }
 
-   @RequestMapping( "/new" )
+   @RequestMapping( "/product/new" )
    public String newProduct( Model _model )
    {
       Product newProduct = new Product();
@@ -47,7 +49,7 @@ public class ProductController
       return "product/productform";
    }
 
-   @RequestMapping( "/edit/{_id}" )
+   @RequestMapping( "/product/edit/{_id}" )
    public String edit( @PathVariable Integer _id, Model _model )
    {
       _model.addAttribute( "product", productService.getById( _id ) );
@@ -55,15 +57,21 @@ public class ProductController
       return "product/productform";
    }
 
-   @RequestMapping( method=RequestMethod.POST )
+   /**
+    *  '/product' 이지만 RequestMethod.POST 인 경우
+    * */
+   @RequestMapping( value = "/product", method=RequestMethod.POST )
    public String saveOfUpdate( Product _product )
    {
       Product product = productService.saveOrUpdate( _product );
 
+      System.out.println( "####################################" );
+      System.out.println( "saveOfUpdate()" );
+
       return "redirect:/product/show/" + product.getId();
    }
 
-   @RequestMapping( "/delete/{_id}" )
+   @RequestMapping( "/product/delete/{_id}" )
    public String delete( @PathVariable Integer _id )
    {
       productService.delete( _id );
