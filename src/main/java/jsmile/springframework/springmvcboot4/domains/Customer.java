@@ -1,8 +1,17 @@
 package jsmile.springframework.springmvcboot4.domains;
 
+import javax.persistence.*;
+
+@Entity
 public class Customer implements IDomainObject
 {
+   @Id
+   @GeneratedValue( strategy = GenerationType.AUTO )
    private Integer id;
+
+   @Version
+   private Integer version;
+
    private String firstName;
    private String lastName;
    private String email;
@@ -18,18 +27,19 @@ public class Customer implements IDomainObject
    {
       return this.id;
    }
-
    @Override
    public void setId( Integer _id )
    {
       this.id = _id;
    }
 
+   public Integer getVersion() { return version; }
+   public void setVersion( Integer version ) { this.version = version; }
+
    public String getFirstName()
    {
       return firstName;
    }
-
    public void setFirstName( String _firstName )
    {
       this.firstName = _firstName;
@@ -39,7 +49,6 @@ public class Customer implements IDomainObject
    {
       return lastName;
    }
-
    public void setLastName( String _lastName )
    {
       this.lastName = _lastName;
@@ -49,7 +58,6 @@ public class Customer implements IDomainObject
    {
       return email;
    }
-
    public void setEmail( String _email )
    {
       this.email = _email;
@@ -59,7 +67,6 @@ public class Customer implements IDomainObject
    {
       return phoneNumber;
    }
-
    public void setPhoneNumber( String _phoneNumber )
    {
       this.phoneNumber = _phoneNumber;
@@ -69,7 +76,6 @@ public class Customer implements IDomainObject
    {
       return addressLine1;
    }
-
    public void setAddressLine1( String _addressLine1 )
    {
       this.addressLine1 = _addressLine1;
@@ -79,14 +85,12 @@ public class Customer implements IDomainObject
    {
       return addressLine2;
    }
-
    public void setAddressLine2( String _addressLine2 ) { this.addressLine2 = _addressLine2; }
 
    public String getCity()
    {
       return city;
    }
-
    public void setCity( String _city )
    {
       this.city = _city;
@@ -96,7 +100,6 @@ public class Customer implements IDomainObject
    {
       return state;
    }
-
    public void setState( String _state )
    {
       this.state = _state;
@@ -106,7 +109,6 @@ public class Customer implements IDomainObject
    {
       return zipCode;
    }
-
    public void setZipCode( String _zipCode )
    {
       this.zipCode = _zipCode;

@@ -1,31 +1,38 @@
 package jsmile.springframework.springmvcboot4.domains;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Product implements IDomainObject
 {
+   @Id
+   @GeneratedValue( strategy = GenerationType.AUTO )
    private Integer id;
+
+   @Version
+   private Integer version;
+
    private String description;
    private BigDecimal price;
    private String imageUrl;
 
    @Override
-   public Integer getId()
-   {
-      return this.id;
-   }
-
+   public Integer getId() { return this.id; }
    @Override
    public void setId( Integer _id )
    {
       this.id = _id;
    }
 
+   public Integer getVersion() { return version; }
+   public void setVersion( Integer version ) { this.version = version; }
+
+
    public String getDescription()
    {
       return description;
    }
-
    public void setDescription( String description )
    {
       this.description = description;
@@ -35,7 +42,6 @@ public class Product implements IDomainObject
    {
       return price;
    }
-
    public void setPrice( BigDecimal price )
    {
       this.price = price;
@@ -45,7 +51,6 @@ public class Product implements IDomainObject
    {
       return imageUrl;
    }
-
    public void setImageUrl( String imageUrl )
    {
       this.imageUrl = imageUrl;
